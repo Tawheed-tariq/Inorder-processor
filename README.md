@@ -121,3 +121,180 @@ The --vcd=and_gate_tb.vcd flag tells GHDL to output the simulation results in a 
 gtkwave file_name_tb.vcd
 
 ```
+
+
+# Let us create and gate simulation
+
+Create a folder named `and_gate` and create two files named `and_gate.vhd` and `and_gate_tb.vhd` inside of the folder
+
+### Content of `and_gate.vhd`
+
+in this file we will design the circuit
+```vhdl
+library IEEE;
+
+use IEEE.STD_LOGIC_1164.ALL;
+
+  
+
+-- Entity declaration for AND gate
+
+entity and_gate is
+
+Port ( a : in STD_LOGIC;
+
+b : in STD_LOGIC;
+
+y : out STD_LOGIC);
+
+end and_gate;
+
+  
+
+-- Architecture for AND gate
+
+architecture Behavioral of and_gate is
+
+begin
+
+y <= a and b;
+end Behavioral;
+```
+
+### Content of `and_gate_tb.vhd`
+
+
+in this file we will test out circuit by giving sample inputs
+```vhdl
+library IEEE;
+
+use IEEE.STD_LOGIC_1164.ALL;
+
+  
+
+-- Entity declaration for testbench (no ports needed)
+
+entity and_gate_tb is
+
+end and_gate_tb;
+
+  
+
+-- Architecture for testbench
+
+architecture Behavioral of and_gate_tb is
+
+  
+
+-- Signal declarations for testbench
+
+signal a : STD_LOGIC := '0';
+
+signal b : STD_LOGIC := '0';
+
+signal y : STD_LOGIC;
+
+  
+
+-- Instantiate the AND gate
+
+component and_gate
+
+Port ( a : in STD_LOGIC;
+
+b : in STD_LOGIC;
+
+y : out STD_LOGIC);
+
+end component;
+
+  
+
+begin
+
+-- Instantiate the and_gate
+
+uut: and_gate Port map (a => a, b => b, y => y);
+
+  
+
+-- Test process
+
+process
+
+begin
+
+-- Test case 1: a = 0, b = 0
+
+a <= '0';
+
+b <= '0';
+
+wait for 1 fs;
+
+-- Test case 2: a = 0, b = 1
+
+a <= '0';
+
+b <= '1';
+
+wait for 1 fs;
+
+  
+
+-- Test case 3: a = 1, b = 0
+
+a <= '1';
+
+b <= '0';
+
+wait for 1 fs;
+
+  
+
+-- Test case 4: a = 1, b = 1
+
+a <= '1';
+
+b <= '1';
+
+wait for 1 fs;
+
+  
+
+-- End simulation
+
+wait;
+
+end process;
+
+end Behavioral;
+```
+
+### Compile the files using GHDL
+```
+ghdl -a and_gate.vhd
+```
+
+```
+ghdl -a and_gate_tb.vhd
+```
+
+```
+ghdl -e and_gate_tb
+```
+
+```
+ghdl -r and_gate_tb --vcd=and_gate_tb.vcd
+```
+
+after this a new file named `and_gate_tb.vcd ` will be created in the same folder 
+now we will simulate the waveform using `gtkwave`
+
+```
+gtkwave and_gate_tb.vcd
+```
+
+and you will probably get a waveform like this
+
+![[Pasted image 20241109222152.png]]
