@@ -297,4 +297,4 @@ gtkwave and_gate_tb.vcd
 
 and you will probably get a waveform like this
 
-![[Pasted image 20241109222152.png]]
+![image](https://github.com/user-attachments/assets/610c226e-6cee-4884-81f4-0cf1d4fd3479)
