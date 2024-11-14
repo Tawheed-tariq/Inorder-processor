@@ -1,0 +1,7 @@
+v 4
+file . "tb_signed_multiplier.vhd" "1df1ac409e3e6595dcef8dfd0cb4de5447b80bfe" "20241114165830.319":
+  entity tb_signed_multiplier at 1( 0) + 0 on 41;
+  architecture tb of tb_signed_multiplier at 8( 135) + 0 on 42;
+file . "signed_multiplier.vhd" "044d3dd1fb091678bc8881944db64f547f47945d" "20241114164636.003":
+  entity signed_multiplier at 1( 0) + 0 on 23;
+  architecture rtl of signed_multiplier at 12( 214) + 0 on 24;
