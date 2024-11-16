@@ -1,0 +1,9 @@
+v 4
+file . "adder_tb.vhd" "833325892f84ec5d6921abd64672f6e67ae51a82" "20241115182759.984":
+  entity adder_tb at 1( 0) + 0 on 15;
+  architecture behavior of adder_tb at 8( 104) + 0 on 16;
+file . "adder.vhd" "ada758956dc3df662e8671649f1351c85b4caa4f" "20241115182755.206":
+  entity full_adder at 2( 14) + 0 on 11;
+  architecture bhv of full_adder at 12( 175) + 0 on 12;
+  entity adder at 19( 314) + 0 on 13;
+  architecture struct of adder at 30( 521) + 0 on 14;
