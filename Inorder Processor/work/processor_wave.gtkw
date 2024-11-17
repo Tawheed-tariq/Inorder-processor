@@ -1,0 +1,52 @@
+[*]
+[*] GTKWave Analyzer v3.3.120 (w)1999-2024 BSI
+[*] Sun Nov 17 09:57:00 2024
+[*]
+[dumpfile] "/mnt/data/home/tawheed/Documents/Programming/Microporcessor-8085/assignment/Inorder Processor/work/processor_tb.vcd"
+[dumpfile_mtime] "Sun Nov 17 09:49:06 2024"
+[dumpfile_size] 3496
+[savefile] "/mnt/data/home/tawheed/Documents/Programming/Microporcessor-8085/assignment/Inorder Processor/work/Processor.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 255 38
+*0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 273
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 161
+@28
+processor_tb.clk
+@22
+processor_tb.data_addr[7:0]
+processor_tb.data_in[7:0]
+processor_tb.data_out[7:0]
+@28
+processor_tb.data_wr
+@22
+processor_tb.instr[31:0]
+processor_tb.instr_addr[7:0]
+@28
+processor_tb.reset
+processor_tb.uut.alu_ctrl[2:0]
+@22
+processor_tb.uut.alu_res[7:0]
+@28
+processor_tb.uut.clk
+@22
+processor_tb.uut.data_addr[7:0]
+processor_tb.uut.data_in[7:0]
+processor_tb.uut.data_out[7:0]
+@28
+processor_tb.uut.data_wr
+@22
+processor_tb.uut.inst_reg[31:0]
+processor_tb.uut.instr[31:0]
+processor_tb.uut.instr_addr[7:0]
+processor_tb.uut.pc[7:0]
+processor_tb.uut.reg_a[7:0]
+processor_tb.uut.reg_b[7:0]
+@28
+processor_tb.uut.reset
+processor_tb.uut.zero_flag
+[pattern_trace] 1
+[pattern_trace] 0

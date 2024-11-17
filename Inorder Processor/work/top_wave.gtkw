@@ -1,0 +1,68 @@
+[*]
+[*] GTKWave Analyzer v3.3.120 (w)1999-2024 BSI
+[*] Sun Nov 17 09:57:48 2024
+[*]
+[dumpfile] "/mnt/data/home/tawheed/Documents/Programming/Microporcessor-8085/assignment/Inorder Processor/work/top_tb.vcd"
+[dumpfile_mtime] "Sun Nov 17 09:49:06 2024"
+[dumpfile_size] 9821
+[savefile] "/mnt/data/home/tawheed/Documents/Programming/Microporcessor-8085/assignment/Inorder Processor/work/top_wave.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 116 38
+*0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 273
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 161
+@28
+top_tb.clk
+top_tb.reset
+top_tb.uut.clk
+@22
+top_tb.uut.data_addr[7:0]
+top_tb.uut.data_from_mem[7:0]
+top_tb.uut.data_to_mem[7:0]
+@28
+top_tb.uut.data_wr
+@22
+top_tb.uut.dmem.addr[7:0]
+@28
+top_tb.uut.dmem.clk
+@22
+top_tb.uut.dmem.data_in[7:0]
+top_tb.uut.dmem.data_out[7:0]
+@28
+top_tb.uut.dmem.wr_en
+@22
+top_tb.uut.imem.addr[7:0]
+@28
+top_tb.uut.imem.clk
+@22
+top_tb.uut.imem.instr[31:0]
+top_tb.uut.instr_addr[7:0]
+top_tb.uut.instruction[31:0]
+@28
+top_tb.uut.proc.alu_ctrl[2:0]
+@22
+top_tb.uut.proc.alu_res[7:0]
+@28
+top_tb.uut.proc.clk
+@22
+top_tb.uut.proc.data_addr[7:0]
+top_tb.uut.proc.data_in[7:0]
+top_tb.uut.proc.data_out[7:0]
+@28
+top_tb.uut.proc.data_wr
+@22
+top_tb.uut.proc.inst_reg[31:0]
+top_tb.uut.proc.instr[31:0]
+top_tb.uut.proc.instr_addr[7:0]
+top_tb.uut.proc.pc[7:0]
+top_tb.uut.proc.reg_a[7:0]
+top_tb.uut.proc.reg_b[7:0]
+@28
+top_tb.uut.proc.reset
+top_tb.uut.proc.zero_flag
+top_tb.uut.reset
+[pattern_trace] 1
+[pattern_trace] 0
