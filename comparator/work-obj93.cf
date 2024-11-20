@@ -1,0 +1,7 @@
+v 4
+file . "tb_comparator_VHDL.vhd" "afbd01d766824f0c195ecaccd333f591c1e7280d" "20241120132643.791":
+  entity tb_comparator_vhdl at 1( 0) + 0 on 13;
+  architecture behavior of tb_comparator_vhdl at 7( 125) + 0 on 14;
+file . "comparator_VHDL.vhd" "56160a8082e087e96defaceeca09e845c087cf69" "20241120132639.735":
+  entity comparator_vhdl at 1( 0) + 0 on 11;
+  architecture comparator_structural of comparator_vhdl at 11( 323) + 0 on 12;
