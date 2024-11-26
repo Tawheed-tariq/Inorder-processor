@@ -1,29 +1,41 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-entity comparator_VHDL is
+
+entity comparator_4bit is
 port (
- A,B: in std_logic_vector(1 downto 0); -- two inputs for comparison
- A_less_B: out std_logic; -- '1' if A < B else '0'
- A_equal_B: out std_logic;-- '1' if A = B else '0'
- A_greater_B: out std_logic-- '1' if A > B else '0'
- );
-end comparator_VHDL;
-architecture comparator_structural of comparator_VHDL is
-signal tmp1,tmp2,tmp3,tmp4,tmp5, tmp6, tmp7, tmp8: std_logic; 
--- temporary signals 
+    A, B: in std_logic_vector(3 downto 0); -- 4-bit inputs for comparison
+    A_less_B: out std_logic;   -- '1' if A < B else '0'
+    A_equal_B: out std_logic;  -- '1' if A = B else '0'
+    A_greater_B: out std_logic -- '1' if A > B else '0'
+);
+end comparator_4bit;
+
+architecture comparator_structural of comparator_4bit is
+    -- Temporary signals for each bit comparison
+    signal equal_bits: std_logic_vector(3 downto 0);
+    signal less_bits, greater_bits: std_logic_vector(3 downto 0);
 begin
- -- A_equal_B combinational logic circuit
- tmp1 <= A(1) xnor B(1);
- tmp2 <= A(0) xnor B(0);
- A_equal_B <= tmp1 and tmp2;
- -- A_less_B combinational logic circuit
- tmp3 <= (not A(0)) and (not A(1)) and B(0);
- tmp4 <= (not A(1)) and B(1);
- tmp5 <= (not A(0)) and B(1) and B(0);
- A_less_B <= tmp3 or tmp4 or tmp5;
- -- A_greater_B combinational logic circuit
- tmp6 <= (not B(0)) and (not B(1)) and A(0);
- tmp7 <= (not B(1)) and A(1);
- tmp8 <= (not B(0)) and A(1) and A(0);
- A_greater_B <= tmp6 or tmp7 or tmp8;
+    -- Equality comparisons for each bit
+    equal_bits(0) <= A(0) xnor B(0);
+    equal_bits(1) <= A(1) xnor B(1);
+    equal_bits(2) <= A(2) xnor B(2);
+    equal_bits(3) <= A(3) xnor B(3);
+
+    -- A_equal_B is true only when all bits are equal
+    A_equal_B <= equal_bits(0) and equal_bits(1) and equal_bits(2) and equal_bits(3);
+
+    -- Less than comparison logic
+    -- Checks each bit position with higher significance
+    A_less_B <= 
+        (not A(3) and B(3)) or 
+        (equal_bits(3) and not A(2) and B(2)) or 
+        (equal_bits(3) and equal_bits(2) and not A(1) and B(1)) or 
+        (equal_bits(3) and equal_bits(2) and equal_bits(1) and not A(0) and B(0));
+
+    -- Greater than comparison logic
+    A_greater_B <= 
+        (A(3) and not B(3)) or 
+        (equal_bits(3) and A(2) and not B(2)) or 
+        (equal_bits(3) and equal_bits(2) and A(1) and not B(1)) or 
+        (equal_bits(3) and equal_bits(2) and equal_bits(1) and A(0) and not B(0));
 end comparator_structural;
