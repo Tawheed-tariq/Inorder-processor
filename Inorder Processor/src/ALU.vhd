@@ -4,11 +4,11 @@ use work.CustomALU_pkg.ALL;
 
 entity ALU is
     Port (
-        A : in STD_LOGIC_VECTOR (7 downto 0);  -- 8-bit input A
-        B : in STD_LOGIC_VECTOR (7 downto 0);  -- 8-bit input B
-        sel : in STD_LOGIC_VECTOR (2 downto 0); -- 3-bit select input
-        Result : out STD_LOGIC_VECTOR (7 downto 0); -- 8-bit output Result
-        Zero : out STD_LOGIC                 -- Zero flag
+        A : in STD_LOGIC_VECTOR (7 downto 0);  
+        B : in STD_LOGIC_VECTOR (7 downto 0); 
+        sel : in STD_LOGIC_VECTOR (2 downto 0); 
+        Result : out STD_LOGIC_VECTOR (7 downto 0); 
+        Zero : out STD_LOGIC                
     );
 end ALU;
 
@@ -31,12 +31,11 @@ begin
             when "101" => -- NOR
                 temp_result := nor_8bit(A, B);
             when others =>
-                temp_result := (others => '0');  -- Default case
+                temp_result := (others => '0');  
         end case;
 
-        Result <= temp_result; -- Assign result to output
+        Result <= temp_result; 
         
-        -- Set the Zero flag
         if temp_result = "00000000" then
             Zero <= '1';
         else

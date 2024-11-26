@@ -9,7 +9,6 @@ entity Top is
 end Top;
 
 architecture Behavioral of Top is
-    -- Component declarations
     component Processor is
         Port (
             clk : in STD_LOGIC;
@@ -41,7 +40,6 @@ architecture Behavioral of Top is
         );
     end component;
 
-    -- Internal signals
     signal instr_addr : STD_LOGIC_VECTOR(7 downto 0);
     signal instruction : STD_LOGIC_VECTOR(31 downto 0);
     signal data_addr : STD_LOGIC_VECTOR(7 downto 0);
@@ -50,7 +48,6 @@ architecture Behavioral of Top is
     signal data_wr : STD_LOGIC;
 
 begin
-    -- Processor instantiation
     proc: Processor
         port map (
             clk => clk,
@@ -63,7 +60,6 @@ begin
             data_wr => data_wr
         );
 
-    -- Instruction Memory instantiation
     imem: InstrMem
         port map (
             clk => clk,
@@ -71,7 +67,6 @@ begin
             instr => instruction
         );
 
-    -- Data Memory instantiation
     dmem: DataMem
         port map (
             clk => clk,

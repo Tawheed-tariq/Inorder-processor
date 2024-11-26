@@ -6,7 +6,6 @@ entity Processor_tb is
 end Processor_tb;
 
 architecture Behavioral of Processor_tb is
-    -- Component Declaration
     component Processor
         Port (
             clk : in STD_LOGIC;
@@ -20,7 +19,6 @@ architecture Behavioral of Processor_tb is
         );
     end component;
     
-    -- Test Signals
     signal clk : STD_LOGIC := '0';
     signal reset : STD_LOGIC := '0';
     signal instr_addr : STD_LOGIC_VECTOR (7 downto 0);
@@ -30,7 +28,6 @@ architecture Behavioral of Processor_tb is
     signal data_out : STD_LOGIC_VECTOR (7 downto 0);
     signal data_wr : STD_LOGIC;
     
-    -- Clock period definition
     constant CLK_PERIOD : time := 10 ns;
     
 begin
@@ -46,7 +43,6 @@ begin
         data_wr => data_wr
     );
     
-    -- Clock process
     clk_process: process
     begin
         clk <= '0';
@@ -55,7 +51,6 @@ begin
         wait for CLK_PERIOD/2;
     end process;
     
-    -- Stimulus process
     stim_proc: process
     begin
         -- Initialize
@@ -63,16 +58,19 @@ begin
         data_out <= x"00";
         wait for CLK_PERIOD*2;
         
-        -- Release reset
         reset <= '0';
         wait for CLK_PERIOD;
-        
+
+        --Test Store instruction
+        instr <= "11000000" & x"0A" & x"01" & x"00"; -- STORE 0A to 01
+        wait for CLK_PERIOD;
+
         -- Test ADD instruction
-        instr <= "00000000" & x"FF" & x"01" & x"00"; -- ADD FF + 01
+        instr <= "00000000" & x"30" & x"01" & x"00"; -- ADD 30 + 01
         wait for CLK_PERIOD;
         
         -- Test SUB instruction
-        instr <= "00100000" & x"FF" & x"01" & x"00"; -- SUB FF - 01
+        instr <= "00100000" & x"1B" & x"01" & x"00"; -- SUB 1B - 01
         wait for CLK_PERIOD;
         
         -- Test AND instruction
@@ -84,14 +82,13 @@ begin
         wait for CLK_PERIOD;
         
         -- Test XOR instruction
-        instr <= "10000000" & x"FF" & x"55" & x"00"; -- XOR FF ^ 55
+        instr <= "10000000" & x"CD" & x"55" & x"00"; -- XOR FF ^ 55
         wait for CLK_PERIOD;
         
         -- Test NOR instruction
-        instr <= "10100000" & x"FF" & x"00" & x"00"; -- NOR FF NOR 00
+        instr <= "10100000" & x"B2" & x"00" & x"00"; -- NOR FF NOR 00
         wait for CLK_PERIOD;
         
-        -- Wait for a few more cycles
         wait for CLK_PERIOD*4;
         
         -- Test reset again

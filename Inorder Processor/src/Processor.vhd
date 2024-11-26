@@ -6,21 +6,17 @@ entity Processor is
     Port (
         clk : in STD_LOGIC;
         reset : in STD_LOGIC;
-        
-        -- Instruction Memory Interface
-        instr_addr : out STD_LOGIC_VECTOR (7 downto 0);
+        data_out : in STD_LOGIC_VECTOR (7 downto 0);
         instr : in STD_LOGIC_VECTOR (31 downto 0);
-        
-        -- Data Memory Interface
+
+        instr_addr : out STD_LOGIC_VECTOR (7 downto 0);
         data_addr : out STD_LOGIC_VECTOR (7 downto 0);
         data_in : out STD_LOGIC_VECTOR (7 downto 0);
-        data_out : in STD_LOGIC_VECTOR (7 downto 0);
         data_wr : out STD_LOGIC
     );
 end Processor;
 
 architecture Behavioral of Processor is
-    -- Components
     component ALU
         Port (
             A : in STD_LOGIC_VECTOR (7 downto 0);
@@ -31,7 +27,6 @@ architecture Behavioral of Processor is
         );
     end component;
 
-    -- Processor Signals
     signal PC : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
     signal Inst_Reg : STD_LOGIC_VECTOR (31 downto 0);
     signal Reg_A, Reg_B : STD_LOGIC_VECTOR (7 downto 0);
@@ -40,11 +35,11 @@ architecture Behavioral of Processor is
     signal Zero_Flag : STD_LOGIC;
 
 begin
-    -- Instruction Fetch
+    -- Fetch
     instr_addr <= PC;
     Inst_Reg <= instr;
 
-    -- Instruction Decode
+    -- Decode
     process(Inst_Reg)
     begin
         case Inst_Reg(31 downto 29) is
@@ -54,6 +49,7 @@ begin
             when "011" => ALU_Ctrl <= "011"; -- OR
             when "100" => ALU_Ctrl <= "100"; -- XOR
             when "101" => ALU_Ctrl <= "101"; -- NOR
+            when "110" => ALU_Ctrl <= "110"; -- Store
             when others => ALU_Ctrl <= "111"; -- Invalid
         end case;
 
@@ -61,7 +57,7 @@ begin
         Reg_B <= Inst_Reg(15 downto 8);
     end process;
 
-    -- ALU Execution
+    -- Execute
     ALU_Unit: ALU
         port map (
             A => Reg_A,
@@ -72,11 +68,10 @@ begin
         );
 
     -- Memory Access
-    data_addr <= ALU_Res(7 downto 0);
-    data_in <= Reg_B;
-    data_wr <= '1' when ALU_Ctrl = "000" else '0'; -- Write for ADD only
+    data_addr <= Inst_Reg(15 downto 8);
+    data_in <= Reg_A;
+    data_wr <= '1' when ALU_Ctrl = "110" else '0'; --store inst
 
-    -- Program Counter Update
     process(clk, reset)
     begin
         if reset = '1' then
